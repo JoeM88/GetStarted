@@ -9,20 +9,25 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import java.sql.Time;
 import java.util.Calendar;
+
+import butterknife.BindView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TimePicker timePicker;
-    private TextView alarmTime;
+    @BindView(R.id.timePicker) TimePicker timePicker;
+    @BindView(R.id.savedAlarmText) TextView alarmTime;
+    @BindView(R.id.AlarmSwitch) Switch simpleSwitch;
     private Calendar calendar;
     private String format = "";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final Switch simpleSwitch = (Switch) findViewById(R.id.AlarmSwitch);
         simpleSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -35,11 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-        timePicker = (TimePicker) findViewById(R.id.timePicker);
-        alarmTime = (TextView)findViewById(R.id.savedAlarmText);
         calendar = Calendar.getInstance();
-
     }
 
     public void setTime(View view){
